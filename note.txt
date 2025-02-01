@@ -1,0 +1,4 @@
+1. npm init -y
+2. npm i express dotenv cors nodemon mongodb
+3. create new file index.js
+4. 
