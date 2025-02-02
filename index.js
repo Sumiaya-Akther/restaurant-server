@@ -19,11 +19,26 @@ const client = new MongoClient(uri, {
     try {
       await client.connect();
       const menuCollection = client.db("restaurant").collection("menu");
+      const reviewCollection = client.db("restaurant").collection("review");
 
+
+      // menu collection
+      
       app.get('/menu', async(req, res)=>{
         const menuData = await menuCollection.find().toArray()
         res.send(menuData);
       })
+
+
+
+      // review collection
+
+      app.get('/review', async(req, res)=>{
+        const reviewData = await reviewCollection.find().toArray()
+        res.send(reviewData);
+      })
+
+
 
       
     } finally {
