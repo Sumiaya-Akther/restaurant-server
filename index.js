@@ -20,7 +20,7 @@ const client = new MongoClient(uri, {
       await client.connect();
       const menuCollection = client.db("restaurant").collection("menu");
       const reviewCollection = client.db("restaurant").collection("review");
-
+      const orderCollection = client.db("restaurant").collection("orders");
 
       // menu collection
       
@@ -30,15 +30,20 @@ const client = new MongoClient(uri, {
       })
 
 
-
       // review collection
 
       app.get('/review', async(req, res)=>{
-        const reviewData = await reviewCollection.find().toArray()
-        res.send(reviewData);
+        const result = await reviewCollection.find().toArray()
+        res.send(result);
       })
 
+      // order collection
+      app.post('/order', async(req, res)=>{
+        const result = await orderCollection.insertOne().toArray()
+        res.send(result);
+      })
 
+    
 
       
     } finally {
